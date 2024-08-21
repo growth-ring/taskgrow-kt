@@ -1,0 +1,45 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+spring:
+  profiles:
+    active: local # default
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/taskgrow
+    username: postgres
+    password: maf
+  jpa:
+    open-in-view: true
+    hibernate:
+#      ddl-auto: create
+      use-new-id-generator-mappings: false
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+        highlight_sql: true
+logging:
+  pattern:
+    console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type.descriptor.sql: trace
+
+springdoc:
+  api-docs:
+    path: /resource/static/v3/api-docs
+  swagger-ui:
+    path: /resource/static/swagger
+    config-url: /resource/static/v3/api-docs/swagger-config
+    url: /resource/static/v3/api-docs
+    disable-swagger-default-url: true
+  enable-spring-security: false
+
